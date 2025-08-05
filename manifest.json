@@ -1,7 +1,6 @@
 {
   "name": "SmartCalc",
+  "short_name": "SmartCalc",
   "start_url": "/index.html"
 }
-
-
 
