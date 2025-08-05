@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartCalc Moyennes</title>
+  <meta name="theme-color" content="#4a5568" />
+  <!-- FAVICON - Nouveau logo calculatrice -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="msapplication-TileColor" content="#4a5568">
+  <meta name="msapplication-config" content="./browserconfig.xml">
+  <meta name="description" content="Calculateur de moyennes avancé pour Master Informatique (IA, SID, RSID) avec design moderne et animations" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+</style>
+
+</head>
+<body class="light">
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <h1><i class="fas fa-calculator"></i> Chargement...</h1>
+    <p>Préparation de votre calculateur avancé</p>
+  </div>
+
+  <!-- Enhanced Header -->
+  <header>
+    <div id="back-button-container">
+      <button id="back-button" title="Retour à la page précédente" class="hidden">
+        <i class="fas fa-chevron-left"></i>
+        <span>Retour</span>
+      </button>
+    </div>
+    <div id="site-logo-container">
+      <h1 class="logo-text">
+        <i class="fas fa-graduation-cap"></i>
+        SmartCalc
+      </h1>
+    </div>
+    <div id="header-actions">
+      <button id="settings-toggle" title="Paramètres">
+        <i class="fas fa-cog"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Enhanced Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <i class="fas fa-cog"></i>
+        Paramètres
+      </div>
+      <button class="sidebar-close" id="sidebar-close" title="Fermer">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="sidebar-content">
+      <div class="settings-section">
+        <h4><i class="fas fa-palette"></i> Apparence</h4>
+        <label class="switch">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="slider round"></span>
+          <span class="switch-label">Mode Sombre</span>
+        </label>
+      </div>
+
+      <div class="settings-section">
+        <h4><i class="fas fa-link"></i> Ressources</h4>
+        <div class="resource-links">
+          <a href="./canevas/canevas-ia.pdf" target="_blank" class="resource-link">
+            <i class="fas fa-file-pdf"></i>
+            <span>Canevas IA</span>
+          </a>
+          <a href="./canevas/canevas-sid.pdf" target="_blank" class="resource-link">
+            <i class="fas fa-file-pdf"></i>
+            <span>Canevas SID</span>
+          </a>
+          <a href="./canevas/canevas-rsid.pdf" target="_blank" class="resource-link">
+            <i class="fas fa-file-pdf"></i>
+            <span>Canevas RSID</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h4><i class="fas fa-tools"></i> Actions</h4>
+        <div class="action-buttons">
+          <button id="reset-all-button" class="btn btn-outline">
+            <i class="fas fa-undo"></i>
+            Réinitialiser Tout
+          </button>
+          <button id="export-pdf-button" class="btn btn-primary">
+            <i class="fas fa-file-pdf"></i>
+            Imprimer / PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application -->
+  <main id="app" class="hidden">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <i class="fas fa-calculator hero-icon"></i>
+          Calculateur de Moyennes Master
+        </h1>
+        <p class="hero-subtitle">
+          Calculez vos moyennes et crédits selon le système LMD pour IA, SID, RSID
+        </p>
+        <div class="hero-features">
+          <div class="feature-item btn btn-outline">
+            <i class="fas fa-magic"></i>
+            <span>Interface Moderne</span>
+          </div>
+          <div class="feature-item btn btn-outline">
+            <i class="fas fa-save"></i>
+            <span>Sauvegarde Auto</span>
+          </div>
+          <div class="feature-item btn btn-outline">
+            <i class="fas fa-mobile-alt"></i>
+            <span>Responsive</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cycle Selection -->
+    <section id="cycle-selector" class="selection-section">
+      <h2><i class="fas fa-graduation-cap"></i> Choisissez le cycle</h2>
+      <div class="selection-grid">
+        <button data-cycle="M1" class="selection-btn cycle-btn">
+          <i class="fas fa-book"></i>
+          <span class="btn-title">Master 1</span>
+          <span class="btn-subtitle">Première année</span>
+        </button>
+        <button data-cycle="M2" class="selection-btn cycle-btn">
+          <i class="fas fa-graduation-cap"></i>
+          <span class="btn-title">Master 2</span>
+          <span class="btn-subtitle">Deuxième année</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Specialty Selection -->
+    <section id="specialty-selector" class="selection-section hidden">
+      <h2><i class="fas fa-brain"></i> Choisissez votre spécialité</h2>
+      <div class="selection-grid">
+        <button data-specialty="IA" class="selection-btn specialty-btn specialty-ia">
+          <i class="fas fa-robot"></i>
+          <span class="btn-title">Intelligence Artificielle</span>
+          <span class="btn-subtitle">IA & Applications</span>
+        </button>
+        <button data-specialty="SID" class="selection-btn specialty-btn specialty-sid">
+          <i class="fas fa-database"></i>
+          <span class="btn-title">Systèmes d'Information</span>
+          <span class="btn-subtitle">SID & Données</span>
+        </button>
+        <button data-specialty="RSID" class="selection-btn specialty-btn specialty-rsid">
+          <i class="fas fa-network-wired"></i>
+          <span class="btn-title">Réseaux & Systèmes</span>
+          <span class="btn-subtitle">RSID Distribués</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Semester Selection -->
+    <section id="semester-selector" class="selection-section hidden">
+      <h2><i class="fas fa-calendar-alt"></i> Choisissez le(s) semestre(s)</h2>
+      <div id="semester-buttons" class="selection-grid"></div>
+    </section>
+
+    <!-- Grade Input Section -->
+    <section id="grade-input-section" class="hidden">
+      <h2><i class="fas fa-edit"></i> Saisie des Notes</h2>
+      <div id="current-semester-info" class="semester-info">
+        <span id="current-sem-label"></span>
+      </div>
+      
+      <div class="table-container">
+        <table id="grade-table" class="enhanced-table">
+          <thead>
+            <tr>
+              <th><i class="fas fa-code"></i> Code</th>
+              <th><i class="fas fa-book"></i> Module</th>
+              <th><i class="fas fa-weight"></i> Coeff</th>
+              <th><i class="fas fa-star"></i> Crédit</th>
+              <th><i class="fas fa-chalkboard-teacher"></i> TD</th>
+              <th><i class="fas fa-laptop-code"></i> TP</th>
+              <th><i class="fas fa-file-alt"></i> Examen</th>
+              <th><i class="fas fa-calculator"></i> Moyenne</th>
+              <th><i class="fas fa-trophy"></i> Crédits</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      
+      <div class="action-buttons">
+        <button id="calculate-semester" class="btn btn-primary">
+          <i class="fas fa-calculator"></i>
+          Calculer Moyenne
+        </button>
+      </div>
+      
+      <div class="calculation-note">
+        <i class="fas fa-info-circle"></i>
+        <span>Le CC est calculé automatiquement à partir de TD et/ou TP selon les règles LMD</span>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="hidden">
+      <h2><i class="fas fa-chart-line"></i> Résultats</h2>
+      
+      <div class="results-grid">
+        <!-- Semester Results -->
+        <div class="result-card semester-result-card">
+          <h3><i class="fas fa-calendar"></i> Résultats Semestriels</h3>
+          <div id="semester-results"></div>
+        </div>
+        
+        <!-- Annual Results -->
+        <div class="result-card annual-result-card">
+          <h3><i class="fas fa-trophy"></i> Résultats Annuels</h3>
+          <div id="annual-results">
+            <div class="result-item highlight">
+              <label for="current-semester-avg">Moyenne Semestre:</label>
+              <span id="current-semester-avg">–</span>
+            </div>
+            <div class="result-item">
+              <label for="current-semester-credits">Crédits Semestre:</label>
+              <span id="current-semester-credits">–</span> / 30
+            </div>
+            <div class="result-item highlight">
+              <label for="annual-average">Moyenne Annuelle:</label>
+              <span id="annual-average">–</span>
+            </div>
+            <div class="result-item">
+              <span>Crédits Totaux:</span>
+              <span id="annual-credits">–</span> / 60
+            </div>
+            <div class="result-status">
+              <span id="annual-status">–</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Other Semester Input -->
+      <div class="other-semester-input">
+        <h4><i class="fas fa-plus-circle"></i> Calcul Moyenne Annuelle</h4>
+        <div class="input-group">
+          <label for="other-semester-avg">Moyenne de l'autre semestre:</label>
+          <input type="number" id="other-semester-avg" min="0" max="20" step="0.01" placeholder="Ex: 15.50">
+          <label for="other-semester-cr">Credit de l'autre semestre:</label>
+          <input type="number" id="other-semester-cr" min="0" max="30" step="1" placeholder="Ex: 30">
+          <button id="calculate-annual" class="btn btn-secondary">
+            <i class="fas fa-chart-line"></i>
+            Calculer
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculation Rules -->
+    <section class="rules-section">
+      <h2><i class="fas fa-book-open"></i> Méthode de Calcul Officielle</h2>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <h3><i class="fas fa-calculator"></i> Moyenne de l'Unité (UE)</h3>
+          <p>Moyenne UE = ∑(Note Module × Coeff) ÷ ∑(Coefficients)</p>
+        </div>
+        <div class="rule-card">
+          <h3><i class="fas fa-chart-bar"></i> Moyenne Semestrielle</h3>
+          <p>Moyenne Semestre = ∑(Moyenne UE × Coeff UE) ÷ ∑(Coefficients UE)</p>
+        </div>
+        <div class="rule-card">
+          <h3><i class="fas fa-star"></i> Règles des Crédits</h3>
+          <ul>
+            <li>Si Moyenne UE ≥ 10 → Tous crédits UE acquis</li>
+            <li>Sinon → Crédits modules ≥10 conservés</li>
+            <li>Si Moyenne Semestre ≥ 10 → 30 crédits acquis</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3><i class="fas fa-trophy"></i> Moyenne Annuelle</h3>
+          <p>Moyenne Annuelle = (S1 + S2) ÷ 2 ou (S3 + S4) ÷ 2</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer personnalisé -->
+    <footer class="custom-footer">
+      <p>Créé avec amour <span class="heart">💖</span> par <a href="https://www.instagram.com/t04yeb/" target="_blank" rel="noopener">Bekkouche Tayeb</a> et <a href="https://www.instagram.com/ilyes_bkr_/" target="_blank" rel="noopener">Bakkar Ilyes</a></p>
+    </footer>
+  </main>
+
+  <!-- Floating Action Button -->
+  <button id="fab-scroll-top" class="fab hidden" title="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Notification Container -->
+  <div id="notification-container"></div>
+
+  <!-- Scripts -->
+   <script>
+  // Désactiver sélection de texte
+  document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+  });
+
+  // Désactiver clic droit
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // Bloquer raccourcis clavier (F12, Ctrl+Shift+I, Ctrl+U)
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.key === "F12" || 
+      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") || 
+      (e.ctrlKey && e.key.toLowerCase() === "u")
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  // Détection DevTools ouvert
+  setInterval(function() {
+    if (
+      (window.outerWidth - window.innerWidth > 100) || 
+      (window.outerHeight - window.innerHeight > 100)
+    ) {
+      document.body.innerHTML = "<h1 style='color:red;text-align:center;margin-top:20%;font-family:sans-serif;'>Accès interdit</h1>";
+    }
+  }, 1000);
+</script>
+
+  <script src="./app.js"></script>
+  <script src="./settings.js"></script>
+  <script>
+    if (
+      "serviceWorker" in navigator &&
+      (window.location.protocol === "https:" ||
+        window.location.hostname === "localhost" ||
+        window.location.hostname.startsWith("127."))
+    ) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((reg) => {
+            console.log("Service worker registered.", reg);
+          })
+          .catch((err) => {
+            console.log("Service worker registration failed:", err);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+
+  <script>
+    if (
+      "serviceWorker" in navigator &&
+      (window.location.protocol === "https:" ||
+        window.location.hostname === "localhost" ||
+        window.location.hostname.startsWith("127."))
+    ) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((reg) => {
+            console.log("Service worker registered.", reg);
+          })
+          .catch((err) => {
+            console.log("Service worker registration failed:", err);
+          });
+      });
+    }
+  </script>
+</body>
