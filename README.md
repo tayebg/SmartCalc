@@ -26,7 +26,7 @@ Pour installer et exécuter SmartCalc localement, suivez ces étapes :
 
 1.  **Cloner le dépôt :**
     ```bash
-    git clone https://github.com/votre-utilisateur/SmartCalc.git
+    git clone https://github.com/tayebg/SmartCalc.git
     ```
 2.  **Naviguer vers le répertoire du projet :**
     ```bash
