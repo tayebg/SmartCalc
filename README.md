@@ -62,7 +62,6 @@ SmartCalc/
 ## Auteur & Licence
 
 **Auteur :** BEKKOUCHE Tayeb
-             
-             BAKKAR Ilyes
+             / BAKKAR Ilyes
 
 Ce projet est sous licence [MIT License](LICENSE).
