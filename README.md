@@ -50,7 +50,7 @@ SmartCalc/
 
 ## Logo App
 
-*   ![Capture d'écran 1](assets/logo_app.png)
+   ![Capture d'écran 1](assets/logo_app.png)
 
 ## Améliorations futures
 
