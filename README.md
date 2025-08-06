@@ -51,12 +51,12 @@ SmartCalc/
 ## Captures d’écran
 
 *   ![Capture d'écran 1](assets/accueil.png)
-*   ![Capture d'écran 2](assets/selection_semestre.png)
-*   ![Capture d'écran 3](assets/tableaux_modules.png)
-*   ![Capture d'écran 4](assets/calcul_moyennes.png)
-*   ![Capture d'écran 5](assets/mode_sombre_clair.png)
-*   ![Capture d'écran 6](assets/reinitialiser_tout.png)
-*   ![Capture d'écran 7](assets/export_pdf.png)
+*   ![Capture d'écran 2](assets/selection_specialite.png)
+*   ![Capture d'écran 3](assets/selection_semestre.png)
+*   ![Capture d'écran 4](assets/tableaux_modules.png)
+*   ![Capture d'écran 5](assets/calcul_moyennes.png)
+*   ![Capture d'écran 6](assets/parametres.png)
+*   ![Capture d'écran 7](assets/retour.png)
 
 ## Améliorations futures
 
