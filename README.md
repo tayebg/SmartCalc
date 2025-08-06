@@ -48,17 +48,9 @@ SmartCalc/
 └── README.md           # Ce fichier README
 ```
 
-## Captures d’écran
+## Logo App
 
-*   ![Capture d'écran 1](assets/loading_page.png)
-*   ![Capture d'écran 2](assets/first_page.png)
-*   ![Capture d'écran 3](assets/accueil.png)
-*   ![Capture d'écran 4](assets/selection_specialite.png)
-*   ![Capture d'écran 5](assets/selection_semestre.png)
-*   ![Capture d'écran 6](assets/tableaux_modules.png)
-*   ![Capture d'écran 7](assets/calcul_moyennes.png)
-*   ![Capture d'écran 8](assets/parametres.png)
-*   ![Capture d'écran 9](assets/retour.png)
+*   ![Capture d'écran 1](assets/logo_app.png)
 
 ## Améliorations futures
 
